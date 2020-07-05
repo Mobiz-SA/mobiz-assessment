@@ -1,17 +1,20 @@
 [
   {
-    "FirstName": "Tom",
-    "LastName": "Smith",
-    "Cellphone": "+27611234567"
+    "firstName": "Tom",
+    "lastName": "Smith",
+    "cellphone": "+27611234567",
+    "id": "daa4f0d4-f4b0-46af-af92-fe347d8e08c2"
   },
   {
-    "FirstName": "Jane",
-    "LastName": "Doe",
-    "Cellphone": "+27784569090"
+    "firstName": "Jane",
+    "lastName": "Doe",
+    "cellphone": "+27784569090",
+    "id": "64ff87b6-6ea6-45e2-b17d-921be2e5ded0"
   },
   {
-    "FirstName": "Alan",
-    "LastName": "Jones",
-    "Cellphone": "+27821238686"
+    "firstName": "Alan",
+    "lastName": "Jones",
+    "cellphone": "+27821238686",
+    "id": "e68ec675-60e7-4376-a3de-2b160c4bf311"
   }
 ]
