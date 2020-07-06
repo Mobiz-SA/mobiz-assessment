@@ -13,7 +13,7 @@
   "paths": {
     "/contacts/{id}": {
       "get": {
-        "description": "Auto generated using Swagger Inspector",
+        "description": "get an existing contact",
         "parameters": [
           {
             "name": "id",
@@ -34,7 +34,11 @@
                 "schema": {
                   "type": "string"
                 },
-                "examples": {}
+                "examples": {
+                  "0": {
+                    "value": "{\n        \"firstName\": \"Jane\",\n        \"lastName\": \"Doe\",\n        \"cellphone\": \"+27784569090\",\n        \"id\": \"64ff87b6-6ea6-45e2-b17d-921be2e5ded0\"\n }"
+                  }
+                }
               }
             }
           }
@@ -46,7 +50,7 @@
         ]
       },
       "delete": {
-        "description": "Auto generated using Swagger Inspector",
+        "description": "delete an existing contact",
         "parameters": [
           {
             "name": "id",
@@ -62,6 +66,73 @@
         "responses": {
           "204": {
             "description": "Auto generated using Swagger Inspector"
+          }
+        },
+        "servers": [
+          {
+            "url": "http://localhost:3001"
+          }
+        ]
+      },
+      "patch": {
+        "description": "update an existing contact",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "contact": {
+                    "type": "object",
+                    "properties": {
+                      "firstName": {
+                        "type": "string"
+                      },
+                      "lastName": {
+                        "type": "string"
+                      },
+                      "cellphone": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                }
+              },
+              "examples": {
+                "0": {
+                  "value": "{\n        \"contact\":{\n        \"firstName\": \"Jane\",\n        \"lastName\": \"Doe\",\n        \"cellphone\": \"+27784569090\"\n    }\n}"
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "id of contacts to be updated",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Auto generated using Swagger Inspector",
+            "content": {
+              "application/json; charset=utf-8": {
+                "schema": {
+                  "type": "string"
+                },
+                "examples": {
+                  "0": {
+                    "value": "{\n        \"firstName\": \"Jane\",\n        \"lastName\": \"Doe\",\n        \"cellphone\": \"+27784569090\",\n        \"id\": \"64ff87b6-6ea6-45e2-b17d-921be2e5ded0\"\n }"
+                  }
+                }
+              }
+            }
           }
         },
         "servers": [
@@ -89,7 +160,7 @@
                 },
                 "examples": {
                   "0": {
-                    "value": "{\n        \"contact\":{\n        \"firstName\": \"Jane\",\n        \"lastName\": \"Doe\",\n        \"cellphone\": \"+27784569090\",\n        \"id\": \"64ff87b6-6ea6-45e2-b17d-921be2e5ded0\"\n    }\n}"
+                    "value": "[{\n        \"firstName\": \"Jane\",\n        \"lastName\": \"Doe\",\n        \"cellphone\": \"+27784569090\",\n        \"id\": \"64ff87b6-6ea6-45e2-b17d-921be2e5ded0\"\n\n}]"
                   }
                 }
               }
@@ -103,7 +174,7 @@
         ]
       },
       "post": {
-        "description": "Auto generated using Swagger Inspector",
+        "description": "add a contact",
         "requestBody": {
           "content": {
             "application/json": {
