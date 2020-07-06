@@ -34,7 +34,7 @@ export const actions = {
     context.commit('setAddContactDialog', payload);
   },
 
-  updateShowNotification({ commit }: any, { show, message}: any) {
+  updateShowNotification({ commit }: any, { show, message }: any) {
     commit('setNotificationMessage', message);
     commit('setShowNotification', show);
   },

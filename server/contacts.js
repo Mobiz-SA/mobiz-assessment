@@ -8,7 +8,6 @@ exports.index = function (req, res) {
 };
 
 exports.add = function (req, res) {
-  console.log(`add request: ${JSON.stringify(req.body)}`);
   contact = req.body.contact;
   if (
     !contact ||
