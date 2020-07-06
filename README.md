@@ -2,7 +2,7 @@
 
 A project showing a simple setup of nuxt project with an express backend. The application allows a user to view contacts in a listing and add a contact.
 
-The goal of the assessment is to add a feature to this project that allows the user to update an existing contact. Use the code base as an example to implement this feature.
+The goal of the assessment is to add a feature to this project that allows the user to update an existing contact using a modal similar to adding a contact. Use the code base as an example to implement this feature.
 
 The rubric for the assessment is as below:
 
