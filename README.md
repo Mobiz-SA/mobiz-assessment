@@ -1,10 +1,10 @@
 # mobiz-assessment
 
-A project showing a simple setup of nuxt project with an express backend. The application allows a user to view contacts in a listing and add a contact. It is still feature incomplete.
+A project showing a simple setup of nuxt project with an express backend. The application allows a user to view contacts in a listing and add a contact.
 
 The goal of the assessment is to add a feature to this project that allows the user to update an existing contact. Use the code base as an example to implement this feature.
 
-The weighting for the assessment is as below:
+The rubric for the assessment is as below:
 
 - Feature completeness (2)
 - Code reuse (1)
