@@ -1,42 +1,22 @@
-import axios from 'axios';
+import axios from "axios";
 
 export const state = () => ({
-  contacts: []
+  contacts: [],
 });
 
 export const mutations = {
   setContacts(state: any, contacts: any[]) {
     state.contacts = contacts;
-  }
+  },
 };
 
 export const actions = {
-  async loadContacts({ commit }) {
+  async loadContacts({ commit }: any) {
     try {
-      // TO fetch data from express server
-      // const response = await axios.get('');
-      const data = [
-        {
-          FirstName: "Tom",
-          LastName: "Smith",
-          Cellphone: "+27611234567",
-        },
-        {
-          FirstName: "Jane",
-          LastName: "Doe",
-          Cellphone: "+27784569090",
-        },
-        {
-          FirstName: "Alan",
-          LastName: "Jones",
-          Cellphone: "+27821238686",
-        },
-      ];
-
-      commit('setContacts', data);
-    }
-    catch (error) {
+      const response = await axios.get("http://127.0.0.1:3001/contacts", {});
+      commit("setContacts", response.data);
+    } catch (error) {
       // Do something with the error
     }
-  }
+  },
 };

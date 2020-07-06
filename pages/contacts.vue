@@ -21,12 +21,12 @@
 <script lang="ts">
 import Vue from "vue";
 import { mapState } from "vuex";
-import { Context } from '@nuxt/types';
+import { Context } from "@nuxt/types";
 
 export default Vue.extend({
   name: "Contacts",
   middleware: (context: Context) => {
-    context.store.dispatch('contact/loadContacts', {});
+    context.store.dispatch("contact/loadContacts", {});
   },
   data: () => {
     return {
@@ -34,9 +34,9 @@ export default Vue.extend({
       page: 1,
       pageCount: 0,
       headers: [
-        { text: "First Name", value: "FirstName" },
-        { text: "Last Name", value: "LastName" },
-        { text: "Cellphone", value: "Cellphone" },
+        { text: "First Name", value: "firstName" },
+        { text: "Last Name", value: "lastName" },
+        { text: "Cellphone", value: "cellphone" },
       ],
     };
   },
