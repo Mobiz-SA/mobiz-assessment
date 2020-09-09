@@ -1,52 +1,79 @@
 <template>
-  <div class="justify-end">
-    <v-dialog v-model="showAddContactDialog" width="450">
-      <v-card>
-        <v-form v-model="valid" @submit.prevent="saveAndCloseForm" ref="form">
-          <v-container class="px-11 py-7">
-            <v-row>
+  <v-dialog v-model="showAddContactDialog" width="450">
+    <v-card>
+      <v-form v-model="valid" @submit.prevent="saveAndCloseForm">
+        <v-container class="px-11 py-7">
+          <v-row class="mb-2">
+            <v-col>
               <h1 class="headline">Add Contact</h1>
-              <v-spacer></v-spacer>
-              <v-btn icon @click="resetContactForm()">
+            </v-col>
+            <v-col class="d-flex justify-end">
+              <v-btn icon @click="resetContactForm">
                 <v-icon dark>mdi-close</v-icon>
               </v-btn>
-            </v-row>
-            <v-row class="mt-5">
+            </v-col>
+          </v-row>
+          <v-row>
+            <v-col cols="12" class="pb-0">
               <label>
                 First name
                 <span class="grey--text text--lighten-1">(Optional)</span>
               </label>
-
-              <v-responsive width="100%"></v-responsive>
-              <v-text-field v-model.trim="firstName" type="text" autocomplete="off" outlined dense></v-text-field>
-            </v-row>
-            <v-row>
+            </v-col>
+            <v-col cols="12" class="pb-0">
+              <v-text-field
+                type="text"
+                v-model.trim="firstName"
+                autocomplete="off"
+                outlined
+                dense
+              />
+            </v-col>
+          </v-row>
+          <v-row>
+            <v-col cols="12" class="pb-0">
               <label>
                 Last name
                 <span class="grey--text text--lighten-1">(Optional)</span>
               </label>
-              <v-responsive width="100%"></v-responsive>
-              <v-text-field v-model.trim="lastName" type="text" autocomplete="off" outlined dense></v-text-field>
-            </v-row>
-            <v-row>
+            </v-col>
+            <v-col cols="12" class="pb-0">
+              <v-text-field
+                v-model.trim="lastName"
+                type="text"
+                autocomplete="off"
+                outlined
+                dense
+              />
+            </v-col>
+          </v-row>
+          <v-row>
+            <v-col cols="12" class="pb-0">
               <label>
                 Cellphone
                 <span class="grey--text text--lighten-1">(Required)</span>
               </label>
-              <v-responsive width="100%"></v-responsive>
-              <v-text-field v-model.trim="cellphone" type="text" autocomplete="off" outlined dense></v-text-field>
-            </v-row>
-            <v-row class="justify-end mt-12">
-              <v-card-actions class="pr-0">
-                <v-btn outlined color="primary" @click.stop="resetContactForm()">Cancel</v-btn>
-                <v-btn type="submit" color="primary">Create Contact</v-btn>
-              </v-card-actions>
-            </v-row>
-          </v-container>
-        </v-form>
-      </v-card>
-    </v-dialog>
-  </div>
+            </v-col>
+            <v-col cols="12" class="pb-0">
+              <v-text-field
+                v-model.trim="cellphone"
+                type="text"
+                autocomplete="off"
+                outlined
+                dense
+              />
+            </v-col>
+          </v-row>
+          <v-row class="justify-end mt-6">
+            <v-card-actions class="pr-0">
+              <v-btn outlined color="primary" @click.stop="resetContactForm">Cancel</v-btn>
+              <v-btn type="submit" color="primary">Create Contact</v-btn>
+            </v-card-actions>
+          </v-row>
+        </v-container>
+      </v-form>
+    </v-card>
+  </v-dialog>
 </template>
 
 <script lang="ts">
@@ -70,9 +97,6 @@ export default Vue.extend({
   computed: {
     ...mapState("contact", {
       showAddContactDialog: "showAddContactDialog",
-      selectedContacts: "selectedContacts",
-      prevPages: "prevPages",
-      currentPage: "currentPage",
     }),
   },
   methods: {
@@ -131,9 +155,3 @@ export default Vue.extend({
   },
 });
 </script>
-
-<style lang="scss" scoped>
-.phone-input {
-  width: 100% !important;
-}
-</style>
