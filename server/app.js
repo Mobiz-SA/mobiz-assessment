@@ -1,10 +1,15 @@
 const express = require("express");
 const cors = require("cors");
+const swaggerUI = require('swagger-ui-express');
+
+const contacts = require("./contacts");
+const openApiDocumentation = require('./oaSpecification');
+
 const app = express();
 
 app.use(cors());
 app.use(express.json());
-const contacts = require("./contacts");
+app.use('/api-docs', swaggerUI.serve, swaggerUI.setup(openApiDocumentation));
 
 app.get("/", contacts.index);
 app.get("/contacts", contacts.index);
