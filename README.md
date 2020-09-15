@@ -8,13 +8,15 @@ The application allows a user to view contacts in a table, and add a contact via
 ## Instructions
 Your task is to add a feature that allows the user to update an existing contact, using a modal similar to adding a contact.
 
-Fork this repo and create a PR that adds this feature.
+Clone this assessment repo as the starting point of the assessment. Set up a new repo on your Github account that will contain your assessment submission. In your repo, create a PR that adds the update contact feature.
 
-Additionally, add a section to the forked repo's README that briefly explains:
+Additionally, add a section to your repo's README that briefly explains:
 * Why you structured your solution in the way you did
 * What assumptions you made
 * What you would do if you had more time
 * What UI/UX changes and improvements you would make
+
+*The [git guide](#git-guide) section provides more detail on the repo setup.*
 
 ## Rubric
 * Feature completeness (2)
@@ -45,3 +47,11 @@ The assessment application is built using these technologies:
   * Web application framework for [Node](https://nodejs.org)
 
 In this application, Express provides the contacts API endpoints. This API is described by an [OpenAPI Specification](https://www.openapis.org) document. Once you have the backend setup and running, you can access a [SwaggerUI](https://swagger.io/tools/swagger-ui) visualisation of the contacts API at `localhost:3001/api-docs`.
+
+## Git guide
+* Clone this **assessment repo** (`mobiz-assessment`) to your local machine
+* Create a **new repo** under your account on GitHub that will contain your assessment submission
+* Set your **new repo** as the remote of the local copy of the **assessment repo**
+* Push the `master` branch of the local **assessment repo** to the new remote (the **new repo**)
+* The local repo is now only linked to your **new repo**
+* In your **new repo**, create a PR that adds the update contact feature
