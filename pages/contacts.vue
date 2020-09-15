@@ -1,11 +1,11 @@
 <template>
   <v-container>
-    <v-row justify="space-between" no-gutters>
+    <div class="d-flex justify-space-between">
       <h1 class="text-h4">Contacts</h1>
       <v-btn color="primary" @click.stop="addContact">
         <v-icon left>mdi-account-plus</v-icon>Add contact
       </v-btn>
-    </v-row>
+    </div>
 
     <AddContact />
 

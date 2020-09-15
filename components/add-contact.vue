@@ -1,7 +1,7 @@
 <template>
-  <v-dialog v-model="showAddContactDialog" width="450">
+  <v-dialog :value="showAddContactDialog" @click:outside="resetContactForm" width="450">
     <v-card>
-      <v-form v-model="valid" @submit.prevent="saveAndCloseForm">
+      <v-form @submit.prevent="saveAndCloseForm">
         <v-container class="px-11 py-7">
           <v-row class="mb-2">
             <v-col>
@@ -15,10 +15,7 @@
           </v-row>
           <v-row>
             <v-col cols="12" class="pb-0">
-              <label>
-                First name
-                <span class="grey--text text--lighten-1">(Optional)</span>
-              </label>
+              <label>First name</label>
             </v-col>
             <v-col cols="12" class="pb-0">
               <v-text-field
@@ -32,10 +29,7 @@
           </v-row>
           <v-row>
             <v-col cols="12" class="pb-0">
-              <label>
-                Last name
-                <span class="grey--text text--lighten-1">(Optional)</span>
-              </label>
+              <label>Last name</label>
             </v-col>
             <v-col cols="12" class="pb-0">
               <v-text-field
@@ -49,10 +43,7 @@
           </v-row>
           <v-row>
             <v-col cols="12" class="pb-0">
-              <label>
-                Cellphone
-                <span class="grey--text text--lighten-1">(Required)</span>
-              </label>
+              <label>Cellphone</label>
             </v-col>
             <v-col cols="12" class="pb-0">
               <v-text-field
@@ -84,14 +75,11 @@ export default Vue.extend({
   name: "AddContact",
   data() {
     return {
-      hasErrorActive: false,
-      valid: true,
       showConfirmationBox: false,
       id: "",
       firstName: "",
       lastName: "",
-      cellphone: "",
-      errors: {},
+      cellphone: ""
     };
   },
   computed: {
@@ -115,15 +103,8 @@ export default Vue.extend({
     clearForm() {
       this.id = "";
       this.cellphone = "";
-      this.clearErrors();
       this.firstName = "";
       this.lastName = "";
-    },
-    clearErrors() {
-      this.errors = {};
-    },
-    formIsValid() {
-      return this.valid && this.cellphone !== "" && !this.hasErrorActive;
     },
     async saveAndCloseForm() {
       const result = await this.saveContact();
