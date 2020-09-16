@@ -1,24 +1,31 @@
 {
   "openapi": "3.0.1",
   "info": {
-    "title": "defaultTitle",
-    "description": "defaultDescription",
-    "version": "0.1"
+    "title": "Mobiz Assessment",
+    "description": "API documentation for the Mobiz Assessment's backend.",
+    "version": "1.0"
   },
   "servers": [
     {
       "url": "http://localhost:3001"
     }
   ],
+  "tags": [
+    {
+      "name": "contacts"
+    }
+  ],
   "paths": {
     "/contacts/{id}": {
       "get": {
-        "description": "get an existing contact",
+        "tags": ["contacts"],
+        "summary": "Find contact by ID",
+        "description:": "Returns a single contact",
         "parameters": [
           {
             "name": "id",
             "in": "path",
-            "description": "id of contacts to be get",
+            "description": "id of contact to return",
             "required": true,
             "schema": {
               "type": "string",
@@ -28,34 +35,38 @@
         ],
         "responses": {
           "200": {
-            "description": "Auto generated using Swagger Inspector",
+            "description": "OK",
             "content": {
               "application/json; charset=utf-8": {
                 "schema": {
-                  "type": "string"
+                  "$ref": "#/components/schemas/Contact"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Contact not found. Ensure contact id exists.",
+            "content": {
+              "application/json; charset=utf-8": {
+                "schema": {
+                  "$ref": "#/components/schemas/ContactNotFoundError"
                 },
-                "examples": {
-                  "0": {
-                    "value": "{\n        \"firstName\": \"Jane\",\n        \"lastName\": \"Doe\",\n        \"cellphone\": \"+27784569090\",\n        \"id\": \"64ff87b6-6ea6-45e2-b17d-921be2e5ded0\"\n }"
-                  }
+                "example": {
+                  "error": "Cannot find contact"
                 }
               }
             }
           }
-        },
-        "servers": [
-          {
-            "url": "http://localhost:3001"
-          }
-        ]
+        }
       },
       "delete": {
-        "description": "delete an existing contact",
+        "tags": ["contacts"],
+        "summary": "Delete a contact",
         "parameters": [
           {
             "name": "id",
             "in": "path",
-            "description": "id of contacts to be deleted",
+            "description": "id of contact to delete",
             "required": true,
             "schema": {
               "type": "string",
@@ -65,43 +76,31 @@
         ],
         "responses": {
           "204": {
-            "description": "Auto generated using Swagger Inspector"
+            "description": "No content"
+          },
+          "400": {
+            "description": "Contact not found. Ensure contact id exists.",
+            "content": {
+              "application/json; charset=utf-8": {
+                "schema": {
+                  "$ref": "#/components/schemas/ContactNotFoundError"
+                },
+                "example": {
+                  "error": "Cannot find contact"
+                }
+              }
+            }
           }
-        },
-        "servers": [
-          {
-            "url": "http://localhost:3001"
-          }
-        ]
+        }
       },
       "patch": {
-        "description": "update an existing contact",
+        "tags": ["contacts"],
+        "summary": "Update a contact",
         "requestBody": {
           "content": {
             "application/json": {
               "schema": {
-                "type": "object",
-                "properties": {
-                  "contact": {
-                    "type": "object",
-                    "properties": {
-                      "firstName": {
-                        "type": "string"
-                      },
-                      "lastName": {
-                        "type": "string"
-                      },
-                      "cellphone": {
-                        "type": "string"
-                      }
-                    }
-                  }
-                }
-              },
-              "examples": {
-                "0": {
-                  "value": "{\n        \"contact\":{\n        \"firstName\": \"Jane\",\n        \"lastName\": \"Doe\",\n        \"cellphone\": \"+27784569090\"\n    }\n}"
-                }
+                "$ref": "#/components/schemas/ContactNested"
               }
             }
           }
@@ -110,7 +109,7 @@
           {
             "name": "id",
             "in": "path",
-            "description": "id of contacts to be updated",
+            "description": "id of contact to update",
             "required": true,
             "schema": {
               "type": "string",
@@ -120,115 +119,124 @@
         ],
         "responses": {
           "200": {
-            "description": "Auto generated using Swagger Inspector",
+            "description": "OK",
             "content": {
               "application/json; charset=utf-8": {
                 "schema": {
-                  "type": "string"
+                  "$ref": "#/components/schemas/Contact"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Contact not found. Ensure contact id exists.",
+            "content": {
+              "application/json; charset=utf-8": {
+                "schema": {
+                  "$ref": "#/components/schemas/ContactNotFoundError"
                 },
-                "examples": {
-                  "0": {
-                    "value": "{\n        \"firstName\": \"Jane\",\n        \"lastName\": \"Doe\",\n        \"cellphone\": \"+27784569090\",\n        \"id\": \"64ff87b6-6ea6-45e2-b17d-921be2e5ded0\"\n }"
-                  }
+                "example": {
+                  "error": "Cannot find contact"
                 }
               }
             }
           }
-        },
-        "servers": [
-          {
-            "url": "http://localhost:3001"
-          }
-        ]
-      },
-      "servers": [
-        {
-          "url": "http://localhost:3001"
         }
-      ]
+      }
     },
     "/contacts": {
       "get": {
-        "description": "returns all contacts",
+        "tags": ["contacts"],
+        "summary": "List all contacts",
         "responses": {
           "200": {
-            "description": "Auto generated using Swagger Inspector",
+            "description": "OK",
             "content": {
               "application/json; charset=utf-8": {
                 "schema": {
-                  "type": "string"
-                },
-                "examples": {
-                  "0": {
-                    "value": "[{\n        \"firstName\": \"Jane\",\n        \"lastName\": \"Doe\",\n        \"cellphone\": \"+27784569090\",\n        \"id\": \"64ff87b6-6ea6-45e2-b17d-921be2e5ded0\"\n\n}]"
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Contact"
                   }
                 }
               }
             }
           }
-        },
-        "servers": [
-          {
-            "url": "http://localhost:3001"
-          }
-        ]
+        }
       },
       "post": {
-        "description": "add a contact",
+        "tags": ["contacts"],
+        "summary": "Create a new contact",
         "requestBody": {
           "content": {
             "application/json": {
               "schema": {
-                "type": "object",
-                "properties": {
-                  "contact": {
-                    "type": "object",
-                    "properties": {
-                      "firstName": {
-                        "type": "string"
-                      },
-                      "lastName": {
-                        "type": "string"
-                      },
-                      "cellphone": {
-                        "type": "string"
-                      }
-                    }
-                  }
-                }
-              },
-              "examples": {
-                "0": {
-                  "value": "{\n        \"contact\":{\n        \"firstName\": \"Jane\",\n        \"lastName\": \"Doe\",\n        \"cellphone\": \"+27784569090\"\n    }\n}"
-                }
+                "$ref": "#/components/schemas/ContactNested"
               }
             }
           }
         },
         "responses": {
           "201": {
-            "description": "Auto generated using Swagger Inspector",
+            "description": "Created",
             "content": {
               "application/json; charset=utf-8": {
                 "schema": {
-                  "type": "string"
-                },
-                "examples": {}
+                  "$ref": "#/components/schemas/Contact"
+                }
               }
             }
           }
-        },
-        "servers": [
-          {
-            "url": "http://localhost:3001"
-          }
-        ]
-      },
-      "servers": [
-        {
-          "url": "http://localhost:3001"
         }
-      ]
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Contact": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "firstName": {
+            "type": "string"
+          },
+          "lastName": {
+            "type": "string"
+          },
+          "cellphone": {
+            "type": "string"
+          }
+        }
+      },
+      "ContactNested": {
+        "properties": {
+          "contact": {
+            "type": "object",
+            "properties": {
+              "firstName": {
+                "type": "string"
+              },
+              "lastName": {
+                "type": "string"
+              },
+              "cellphone": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      },
+      "ContactNotFoundError": {
+        "type": "object",
+        "properties": {
+          "error": {
+            "type": "string"
+          }
+        }
+      }
     }
   }
 }
