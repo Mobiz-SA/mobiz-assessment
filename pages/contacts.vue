@@ -1,36 +1,39 @@
 <template>
   <v-container>
-    <v-row>
-      <v-col>
-        <h1 class="display-1">Contacts</h1>
-      </v-col>
-      <v-col class="text-right">
-        <v-btn color="primary" dark @click.stop="addContact">
-          <v-icon dark left>mdi-account-plus</v-icon>Add contact
-        </v-btn>
-      </v-col>
-    </v-row>
+    <div class="d-flex justify-space-between">
+      <h1 class="text-h4">Contacts</h1>
+      <v-btn color="primary" @click.stop="addContact">
+        <v-icon left>mdi-account-plus</v-icon>Add contact
+      </v-btn>
+    </div>
 
-    <AddContact @change-page="goToActionPage" />
+    <AddContact />
 
     <v-data-table
       :headers="headers"
       :items="contacts"
       :page.sync="page"
-      show-select
       :items-per-page="itemsPerPage"
-      @page-count="pageCount = $event"
       item-key="id"
-      class="elevation-1 mt-4"
+      show-select
       hide-default-footer
-    ></v-data-table>
-    <div class="text-center">
-      <v-pagination v-model="page" :length="pageCount"></v-pagination>
+      class="elevation-1 mt-4"
+      @page-count="pageCount = $event"
+    />
+    <div class="d-flex justify-center">
+      <v-pagination v-model="page" :length="pageCount" />
     </div>
-    <v-snackbar v-model="showNotification" color="blue darken-2">
+
+    <v-snackbar v-model="showNotification" color="primary">
       {{notificationMessage}}
       <template v-slot:action>
-        <v-btn class="black--text" color="grey lighten-4" @click="showNotification = false">Close</v-btn>
+        <v-btn
+          class="black--text"
+          color="grey lighten-4"
+          @click="showNotification = false"
+        >
+          Close
+        </v-btn>
       </template>
     </v-snackbar>
   </v-container>
@@ -81,11 +84,6 @@ export default Vue.extend({
     }),
     addContact() {
       this.updateAddContactDialog(true);
-    },
-    async goToActionPage(action: string) {
-      if (action === "add") {
-        await this.loadContacts({});
-      }
     },
   },
 });
